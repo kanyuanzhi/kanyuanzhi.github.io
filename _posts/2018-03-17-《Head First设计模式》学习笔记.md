@@ -1,6 +1,7 @@
 ---
 title: 《Head First模式设计》学习笔记
 tags: 设计模式
+key: 20180317
 ---
 
 # Design Patterns Learning

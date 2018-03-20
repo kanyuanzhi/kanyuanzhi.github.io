@@ -1,6 +1,7 @@
 ---
 title: 《Head First模式设计》学习笔记
 tags: Java
+key: 20180316
 ---
 
 # Design Patterns Learning
