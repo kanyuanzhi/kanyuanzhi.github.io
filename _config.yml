@@ -15,9 +15,9 @@ text_color_theme: default #eg: default | dark | forest | ocean | chocolate | ora
 ## Base settings ##
 # url:  #the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl: /
-title: Kan's blog
+title: Kan Yuanzhi
 description: > #this means to ignore newlines until "nav_lists:"
-  Kan's blog
+  Kan Yuanzhi
 
 nav_lists:
   - titles:
@@ -44,7 +44,7 @@ timezone: Asia/Shanghai #see https://en.wikipedia.org/wiki/List_of_tz_database_t
 ## Author & social ##
 author:
   name: Kan Yuanzhi
-  email:  kan@mail.ustc.edu.cn,kanyuanzhi@gmail.com
+  email:  kanyuanzhi@gmail.com
   # facebook:  #your Facebook username
   # twitter:  #your Twitter username
   github:  kanyuanzhi
