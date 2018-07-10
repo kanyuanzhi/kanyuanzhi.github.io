@@ -26,7 +26,7 @@ key: 20180710
 
 Recency-Based Strategies主要是针对时间局部性。
 
-### 实例
+#### 实例
 - LRU
 - LRU-Threshold
 - Pitkow/Recker's strategy
@@ -41,12 +41,12 @@ Recency-Based Strategies主要是针对时间局部性。
 
 > 具体算法可查阅相关论文
 
-### 优点
+#### 优点
 1. 网络的请求流经常表现出时间局部性的特点，所以这些策略比较适合；
 2. 可以很好适应工作负载的变化（比如出现新的热点内容）；
 3. 易于部署，执行快速。
 
-### 缺点
+#### 缺点
 1. 简单的LRU及其变体没有很好地将recency与内容大小结合起来。SIZE策略有考虑内容大小，但替换算法过于激进。PSS结合得不错。
 2. 没有考虑频率（frequency）的影响。频率在更加静态的环境中是重要指标。
 
@@ -58,17 +58,17 @@ Recency-Based Strategies主要是针对时间局部性。
 
 以下均考虑In-Cache LFU。
 
-### 实例
+#### 实例
 - LFU
 - LFU-Aging
 - LFU-DA
 - α-Aging
 - swLFU
 
-### 优点
+#### 优点
 1. 考虑到请求频率的影响，适用于静态环境，即流行的内容在一定时间段内并不经常发生变化。
 
-### 缺点
+#### 缺点
 1. 复杂度较高；
 2. 易形成缓存污染，对于工作负载的动态变化，频率的统计过于静态，造成当前并不流行但过去流行的内容会长时间贮存在缓存中。
 
@@ -77,7 +77,7 @@ Recency-Based Strategies主要是针对时间局部性。
 
 结合recency与频率。
 
-### 实例
+#### 实例
 - SLRU (Segmented LRU)
 - Generational Replacement
 - LRU*
@@ -86,16 +86,16 @@ Recency-Based Strategies主要是针对时间局部性。
 - CSS(Cubic Selection Scheme)
 - LRU-SP
 
-### 优点
+#### 优点
 1. 如果设计的好，可以克服Recency-Based与Frequency-Based各自的缺点。
 
-### 缺点
+#### 缺点
 1. 复杂度较高，且都没有考虑内容大小的影响。
 
 ## Function-Based Strategies
 使用通用的函数来计算每个内容的价值，根据这些价值决定缓存中的替换内容。
 
-### 实例
+#### 实例
 - GD(Greedy Dual)-Size
 - GDSF
 - GD*
@@ -110,31 +110,48 @@ Recency-Based Strategies主要是针对时间局部性。
 - LUV
 - LR(Logistic Regression)-Model
 
-### 优点
+#### 优点
 1. 不需要假设固定的因素（recency，频率）组合或者固定的数据结构的使用，通过合理选择加权参数，可以优化任意性能指标；
 2. 考虑了许多处理不同工作负载情况的因素。
 
-### 缺点
+#### 缺点
 1. 选择合适的参数比较困难。有些基于此的策略认为参数因来自于对网络的跟踪学习，但网络的工作负载在不断变化，需要自适应的参数设置，这又增加了策略的复杂度；
 2. 使用延时（latency）作为价值计算（有些基于此的策略的价值函数与网络延时有关）可能带来一些问题（如评价不准确），因为延时不稳定，影响它的因素太多。
 
 ## Randomized Strategies
 随机决定缓存中的替换内容。
 
-### 实例
+#### 实例
 - RAND
 - HARMONIC
 - LRU-C and LRU-S
 - Randomized replacement with general value functions 
 
-### 优点
+#### 优点
 1. 不需要特定的数据结构来实现插入与删除内容；
 2. 易于实现。
 
-### 缺点
+#### 缺点
 1. 评估起来比较麻烦，相同的实验多次进行会产生不同的结果。
 
 # 缓存策略的重要性
+此节的前半部分主要为评论当时关于缓存策略不重要的论点。
+> Nowadays cache replacement is often considered less important [Krishnamurthy and Rexford 2001; Rabinovich and Spatscheck 2002].
+
+这种论点当时主要基于一下几点：
+
+1. 存储器件的价格逐渐降低使得可以有足够大的空间来缓存内容；
+2. 内容可以被缓存的流量比例在下降；
+3. 已经存在足够好的缓存算法了，如GD-Size；
+4. 内容一段时间内的不断变化降低了用大缓存存储它们更长时间的价值。
+
+作者也针对以上几点评价：
+
+1. （1）有些代理缓存服务器不具有部署大容量存储器件的条件；（2）新的大尺寸网络内容出现；
+2. 不可缓存的内容大多数是具有即时性的内容，需要加强对缓存一致性的研究；
+3. 足够好的缓存替换策略。关于“好”有不同指标，同一策略难以在不同的网络工作负载下均表现优异。经常使用的指标有：命中率（Hit-rate），字节命中率（Byte-hit-rate），延时节约率（Delay-savings-ratio）（由于延时的不确定性，次项指标很少使用）。
+
+## 缓存策略的应用场景
 
 
 
