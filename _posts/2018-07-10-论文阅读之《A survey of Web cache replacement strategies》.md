@@ -5,19 +5,19 @@ key: 20180710
 ---
 
 
-# 综述
+# 1 综述
 本文全面介绍了已有的（2003年）缓存替换策略,并提出一种新的分类方法将这些缓存替换策略归类，在归类的基础上分析比较各类之间的优缺点。进一步，本文讨论了缓存策略对于代理缓存服务器的重要性，最后展望了未来的研究方向（在2018看这些还是很有前瞻性的）。
 <!--more-->
 
-# 基本信息
+# 2 基本信息
 **Author:** Podlipnig, S., Boszormenyi, L.<br>
 **Year:** 2003<br>
 **Journal:** Acm Computing Surveys<br>
 **Url:** [click here](http://apps.webofknowledge.com/InboundService.do?customersID=ResearchSoft&mode=FullRecord&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=EndNote&SrcAuth=ResearchSoft&SID=6E2nE3hfIggQQhgCdB9&UT=WOS%3A000187181700002)
 
-# 缓存替换策略归类
+# 3 缓存替换策略归类
 
-## Recency-Based Strategies
+## 3.1 Recency-Based Strategies
 使用**近因**（recency）作为划分点。最典型代表是LRU策略，基于请求流中可以观察到的**引用局部性**(locality of reference，表征了基于过去的到达流来预测未来的到达流的能力)。有两种局部性：
 
 1. 时间局部性：是指短时间内对同一内容的重复请求。意味着最近被访问的内容更有可能在在将来被访问。
@@ -50,7 +50,7 @@ Recency-Based Strategies主要是针对时间局部性。
 1. 简单的LRU及其变体没有很好地将recency与内容大小结合起来。SIZE策略有考虑内容大小，但替换算法过于激进。PSS结合得不错。
 2. 没有考虑频率（frequency）的影响。频率在更加静态的环境中是重要指标。
 
-## Frequency-Based Strategies
+## 3.2 Frequency-Based Strategies
 使用**频率**作为划分点。典型代表为LFU策略。它们基于这样一个事实：不同的网络内容具有不同的流行度，这些不同的流行度导致不同的请求频率。Frequency-Based Strategies跟踪这些流行度并基于此对未来作出预测。LFU可以以两种形式加以使用：
 
 1. Perfect LFU：统计对内容i的所有请求数。空间花销大。
@@ -73,7 +73,7 @@ Recency-Based Strategies主要是针对时间局部性。
 2. 易形成缓存污染，对于工作负载的动态变化，频率的统计过于静态，造成当前并不流行但过去流行的内容会长时间贮存在缓存中。
 
 
-## Recency/Frequency-Based Strategies
+## 3.3 Recency/Frequency-Based Strategies
 
 结合recency与频率。
 
@@ -92,7 +92,7 @@ Recency-Based Strategies主要是针对时间局部性。
 #### 缺点
 1. 复杂度较高，且都没有考虑内容大小的影响。
 
-## Function-Based Strategies
+## 3.4 Function-Based Strategies
 使用通用的函数来计算每个内容的价值，根据这些价值决定缓存中的替换内容。
 
 #### 实例
@@ -118,7 +118,7 @@ Recency-Based Strategies主要是针对时间局部性。
 1. 选择合适的参数比较困难。有些基于此的策略认为参数因来自于对网络的跟踪学习，但网络的工作负载在不断变化，需要自适应的参数设置，这又增加了策略的复杂度；
 2. 使用延时（latency）作为价值计算（有些基于此的策略的价值函数与网络延时有关）可能带来一些问题（如评价不准确），因为延时不稳定，影响它的因素太多。
 
-## Randomized Strategies
+## 3.5 Randomized Strategies
 随机决定缓存中的替换内容。
 
 #### 实例
@@ -134,8 +134,8 @@ Recency-Based Strategies主要是针对时间局部性。
 #### 缺点
 1. 评估起来比较麻烦，相同的实验多次进行会产生不同的结果。
 
-# 缓存策略的重要性
-## 重要性
+# 4 缓存策略的重要性
+## 4.1 重要性
 此节的前半部分主要为评论当时关于缓存策略不重要的论点。
 > Nowadays cache replacement is often considered less important [Krishnamurthy and Rexford 2001; Rabinovich and Spatscheck 2002].
 
@@ -153,11 +153,11 @@ Recency-Based Strategies主要是针对时间局部性。
 3. 足够好的缓存替换策略。关于“好”有不同指标，同一策略难以在不同的网络工作负载下均表现优异。经常使用的指标有：命中率（Hit-rate），字节命中率（Byte-hit-rate），延时节约率（Delay-savings-ratio）（由于延时的不确定性，次项指标很少使用）；
 4. 见应用场景部分。
 
-## 缓存策略的应用场景
-### Product-Based Approaches
+## 4.2 缓存策略的应用场景
+### 4.2.1 Product-Based Approaches
 基于产品的场景大部分使用LRU及其变体，因为易于部署，算法简单。工业界不认为缓存的大小是影响缓存性能的因素，在足够大的缓存中，简单的LRU就可以实现很好的效果。
 
-### Considerations Based on Statistical Properties
+### 4.2.2 Considerations Based on Statistical Properties
 有两个典型的工作负载因素影响着缓存替换算法的性能：
 
 1. 内容大小：网络内容大小通常用重尾分布（heavy-tailed distribution），轻尾分布与重尾分布结合，或者是对数正态分布（log-normal dis- tribution）来建模。
@@ -172,16 +172,16 @@ Recency-Based Strategies主要是针对时间局部性。
 3. 如果缓存空间对于全网内容而言非常小，则缓存替换策略应该优先考虑recency而不是频率，因为短期内的时间相关性的存在（**时间相关性--->LRU**）；
 4. 如果缓存空间足够大，则应该考虑使用长期频率因素，因为内容的流行度对时间局部性的贡献更大(**时间流行性--->LFU**)。此外频率应该总是与过期机制相结合以减少缓存污染。
 
-## 缓存管理的可选模型
+## 4.3 缓存管理的可选模型
 1. 每隔一段时间根据历史信息同一更换缓存内容。仅适用明确定义（提前知道）内容数量的特定系统，例如网络服务器。
 2. 基于TTL，缓存内容统一设置生存时间，或者请求次数大于n才会缓存，缓存后设置生存时间。
 
-# 未来研究方向
-## 自适应缓存替换
-## 协作缓存替换
-## 缓存替换与缓存一致性的结合
-## 多媒体缓存替换
-## 差异化缓存替换
+# 5 未来研究方向
+## 5.1 自适应缓存替换
+## 5.2 协作缓存替换
+## 5.3 缓存替换与缓存一致性的结合
+## 5.4 多媒体缓存替换
+## 5.5 差异化缓存替换
 
 
 
