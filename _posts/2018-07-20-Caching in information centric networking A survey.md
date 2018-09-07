@@ -1,5 +1,5 @@
 ---
-title: Caching in information centric networking: A survey
+title: Caching in information centric networking A survey
 tags:	PaperRead
 key: 20180720
 ---
