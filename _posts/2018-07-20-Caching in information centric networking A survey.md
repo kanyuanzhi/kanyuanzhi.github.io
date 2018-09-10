@@ -98,7 +98,15 @@ LCE是大多数ICN构想的默认缓存决策策略，但它会造成缓存的�
 
 #### 隐式协作缓存决策
 在隐式协作中，每个节点不需要知道其他节点的状态信息或者仅需要与其他节点进行少量的信息交换。
+为解决LCE带来的冗余性问题，一些隐式协作方案被提出：
 
+- Leave Copy Down (LCD)
+- Move Copy Down (MCD)
+- Copy with Probability (Prob)
+- Randomly Copy One (RCOne)
+- Probabilistic Cache (ProbCache)
+
+![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20180720/1.jpg)
 
 #### 缓存决策的时机
 
