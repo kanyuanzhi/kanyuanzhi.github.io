@@ -109,10 +109,18 @@ LCE是大多数ICN构想的默认缓存决策策略，但它会造成缓存的�
 ![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20180720/1.jpg)
 
 #### 缓存决策的时机
+- 新的内容到达时；
+- 内容被替换时（内容被替换时可以不简单地把就内容删除，而是移到上层节点）。
 
 #### 缓存决策间的关联
+当前大多数缓存决策方案在决定是否缓存一个内容时，并不会考虑其他内容对此内容的影响，但是在块级层面上，这种影响是显然存在的。
+
+这篇论文提出WAVE以解决关联的缓存决策：
+[WAVE: Popularity-based and Collaborative In-network Caching for Content-Oriented Networks](https://ieeexplore.ieee.org/abstract/document/6193512/)
 
 #### 缓存决策比较
+![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20180720/2.jpg)
+
 
 ### 缓存替换策略
 
