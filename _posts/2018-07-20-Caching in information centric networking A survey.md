@@ -10,7 +10,7 @@ key: 20180720
 <!--more-->
 
 ## 基本信息
-**Author:** Guoqiang Zhang,Yang Li,Tao Lin<br>
+**Author:** Guoqiang Zhang, Yang Li, Tao Lin<br>
 **Year:** 2013<br>
 **Journal:** Computer Networks<br>
 **Url:** [click here](https://www.sciencedirect.com/science/article/pii/S1389128613002235)
