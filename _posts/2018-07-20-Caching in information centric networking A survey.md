@@ -115,20 +115,42 @@ LCE是大多数ICN构想的默认缓存决策策略，但它会造成缓存的�
 #### 缓存决策间的关联
 当前大多数缓存决策方案在决定是否缓存一个内容时，并不会考虑其他内容对此内容的影响，但是在块级层面上，这种影响是显然存在的。
 
-这篇论文提出WAVE以解决关联的缓存决策：
-[WAVE: Popularity-based and Collaborative In-network Caching for Content-Oriented Networks](https://ieeexplore.ieee.org/abstract/document/6193512/)
+[WAVE: Popularity-based and Collaborative In-network Caching for Content-Oriented Networks](https://ieeexplore.ieee.org/abstract/document/6193512/)针对缓存决策间的关联性提出了WAVE方案：
 
 #### 缓存决策比较
 ![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20180720/2.jpg)
 
-
 ### 缓存替换策略
+
+详见[A survey of Web cache replacement strategies](https://kanyuanzhi.github.io/2018/07/10/A-survey-of-Web-cache-replacement-strategies.html)
+
+有研究表明，使用随机的替换策略可以达到LRU相近的效果。
+
+### 缓存内容的可用性
+缓存内容的可用性由两个因素决定：
+
+1. 内容可见度。指一个缓存内容的当前信息在多大范围内传播可以使其他节点知道其存在。
+2. 内容搜索方案。指当请求到达时，如何在将其的控制权转发到下一跳之前搜索内容。
+
+一般来说，越广泛的可见度意味着将请求路由到合适节点的机会更大。但提升可见度也会产生额外开销，这是因为：（1）内容的当前信息需要在更大的范围内传播，需要大量的及时更新；（2）高动态性意味着维护系统的一致性变得困难。**ICN中一个热点的研究方向是如何在可接受的开销代价下提高内容的可见度。**
+
+根据内容可见范围，当前研究可分为如下三类：
+
+#### 1. 路径可用
+仅路径上的缓存内容可以用来响应请求，即使被请求的内容在沿途一节点的邻居节点上，且从邻居节点获取内容的开销低于从上游节点获取内容的开销，请求依然会沿到源的路径路由，这明显是低效的。因此需要充分利用路由系统或者注册系统来扩大内容的可见度。
+
+#### 2. 全局可用
+在ICN中，用全局路由系统或者注册系统发布位于源节点处的内容的当前信息，在中间节点的内容的当前信息并不会被全局发布。这是因为网间缓存的数量太多且易变，若在全局范围内发布则会产生难以仍受的额外开销。
+
+#### 3. 部分可用
+
+#### 可用性比较
 
 ## 挑战与未来研究方向
 
 ### 块级内容流行度
 
-### 内容请求间的关联与基于关联的缓存决策
+### 内容请求间的关联性与基于关联性的缓存决策
 
 ### ICN友好的网络拓扑结构
 
