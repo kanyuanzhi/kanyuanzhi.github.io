@@ -80,7 +80,7 @@ leancloud:
   app_key: f5tTQ4bysRqM698yKIUy4EeW #LeanCloud App key
   app_class: Sights #LeanCloud App class
 
-# mathjax: true
+mathjax: true
 # mathjax_autoNumber: true
 # mermaid: true
 # chart: true
