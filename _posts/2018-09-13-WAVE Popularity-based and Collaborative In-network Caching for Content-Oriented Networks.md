@@ -8,7 +8,7 @@ key: 20180913
 ## 综述
 本文对近年来国际上在该领域的主要研究成果进行了回顾与总结，分析了ICN缓存网络的新特征带来的挑战，综述了ICN缓存网络中若干主要问题的研究现状，包括缓存大小规划、应用无关的缓存空间共享机制、缓存决策策略、网络内置缓存对象的可用性以及缓存网络的理论模型等，并进行了深入的分析和对比，同时指出可能的设计选择空间。
 <!--more-->
-
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 $$x_1$$
 
