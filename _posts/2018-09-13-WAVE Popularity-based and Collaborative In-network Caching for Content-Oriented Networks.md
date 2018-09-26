@@ -60,7 +60,7 @@ CMW的大小由以下两个参数决定：
 对于以上操作，路由器对每个接口的每个文件维护两个计数器：CMW状态$n$和最近一个缓存建议标志位被设置的块的序号$cached$。
 
 #### 算法过程
-![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20180913/2.jpg)
+![Alt Image Text](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20180913/2.jpg "algorithm")
 
 ### 替换什么
 
