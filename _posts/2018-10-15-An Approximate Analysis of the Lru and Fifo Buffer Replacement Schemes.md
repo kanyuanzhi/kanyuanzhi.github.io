@@ -62,11 +62,13 @@ $$\begin{split}
 令$r_k(j-1)$表示当一个请求到来后缓存中有项目从位置$j-1$移到$j$的条件下，该项目是来自分割$k$的概率（条件概率）。我们**近似**稳态时候的概率$p_k(j)=r_k(j-1)$，令$b_k(j)$表示缓存中前$j$个位置中的项目来自分割$k$的平均数量，有：
 
 $$b_k(j)=\sum_{l=1}^jE[X_l(j)]=\sum_{l=1}^jp_k(l),j=1,2,\dots,B \quad (2)$$
+
 $$p_k(j)=r_k(j-1)=\dfrac{(\alpha_k[1-\frac{b_k(j-1)}{D_k}])^+}{r(j-1)},j=1,2,\dots,B-1;k=1,\dots,K \quad (3)$$
 
 其中
 
 $$r(j-1)=\sum_{i=1}^K(\alpha_i[1-\dfrac{b_i(j-1)}{D_i}])^+,j=1,2,\dots,B-1$$
+
 $$(a)^+=\begin{cases}a,\quad a>0\\
 0,\quad otherwise\end{cases}$$
 
