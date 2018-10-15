@@ -17,7 +17,7 @@ key: 20180913
 **Url:** [click here](https://ieeexplore.ieee.org/abstract/document/6193512/)
 
 ## WAVE特征总结
-1. 基于流行度（Popularity-based）：WAVE依据内容的流行度决定缓存块的数量。当访问量增加时，WAVE**指数式**增加缓存快的数量并更广泛地传播它们。
+1. 基于流行度（Popularity-based）：WAVE依据内容的流行度决定缓存块的数量。当访问量增加时，WAVE**指数式**增加缓存块的数量并更广泛地传播它们。
 2. 简单（Simple）：不需要先验信息，缓存决策只依赖每个文件的两个计数器；可用于所有路由器架构，因为只需要知道请求从哪里来。
 3. 分布式（Decentralized）：每个路由器独立做出缓存决定。
 4. 可逐步部署（Incrementally deployable）
