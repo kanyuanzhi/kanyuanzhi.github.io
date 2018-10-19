@@ -36,6 +36,8 @@ $$p_{ki}=K_k\frac{1}{[R_k(i)]^{z_k}}$$
 
 其中$K_k$是归一化因子，$R_k(i)$是内容$i$在节点$k$出的流行度排名。
 
+![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20181019/1.jpg)
+
 ### 模型描述
 缓存丢失率常用做评价缓存替换算法的性能。
 
@@ -58,6 +60,15 @@ $$\begin{align}
 
 ### 模型分析
 $\lambda_{ki}^0$与$\lambda_{0i}$对应的平均丢失间隔为$T_{ki}=\dfrac{1}{\lambda_{ki}^0}$与$T_{0i}=\dfrac{1}{\lambda_{0i}}$
+
+#### 计算$T_{ki}$
+注意到节点$k$处针对内容$i$的两个请求丢失的间隔时间由**一组独立同分布的随机变量序列$\{t_1,t_2,\dots,t_{n-1}\}$**加上**一个独立随机变量$t_n$**组成。
+
+$t_i(i=1,2,\dots,n-1)$：针对内容$i$的两个命中请求的时间间隔；
+
+$t_n$：最后一次缓存命中与下一次缓存丢失的时间间隔。
+
+![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20181019/2.jpg)
 
 
 
