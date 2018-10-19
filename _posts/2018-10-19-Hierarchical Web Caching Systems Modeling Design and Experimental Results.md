@@ -1,5 +1,5 @@
 ---
-title: Hierarchical Web Caching Systems: Modeling, Design and Experimental Results
+title: Hierarchical Web Caching Systems Modeling Design and Experimental Results
 tags:	PaperRead
 key: 20181016
 ---
