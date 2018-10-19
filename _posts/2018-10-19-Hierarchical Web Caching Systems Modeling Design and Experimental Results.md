@@ -51,7 +51,7 @@ $\lambda_{0i}$：内容$i$在根节点的平均丢失速率。
 
 $$\begin{align}
 内容i在节点k的丢失率：\eta_{ki} &= \frac{\lambda_{ki}^0}{\lambda_{ki}} \\
-内容i的在整个系统中的总丢失率：\eta_i &= \frac{\lambda_i^0}{\sum_{k=1}^M\lambda_{ki}} \\
+内容i的在全系统中的总丢失率：\eta_i &= \frac{\lambda_i^0}{\sum_{k=1}^M\lambda_{ki}} \\
 节点k的总丢失率：\eta_k^0 &= \frac{\sum_{i=1}^N\lambda_{ki}^0}{\sum_{i=1}^N\lambda_{ki}} \\
 全系统的总丢失率：\eta &= \frac{\sum_{i=1}^N\lambda_{0i}}{\sum_{k=1}^M\sum_{i=1}^N\lambda_{ki}}
 \end{align}$$
@@ -70,10 +70,47 @@ $t_n$：最后一次缓存命中与下一次缓存丢失的时间间隔。
 
 ![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20181019/2.jpg)
 
+首先计算叶节点$k$处内容$i$的请求丢失间隔$t$的概率密度函数$f_{ki}^0(t)$。有：
 
+$$t=\sum_{i=1}^{n-1}t_i+t_n$$
 
+$t_i$的精确分布可以通过单个内容的组合泊松过程的分布得到，但计算量巨大。因此本文提出一个近似技术使得问题易于处理。
 
+‼️**定义$\tau_{ki}$为对内容$i$的两个相邻请求的最大间隔时间，且期间不包括缓存丢失。实际上$\tau_{ki}$是个随机变量，但在本文的近似中，假设：**
 
+1. **对任意给定的$k$和$i$，$\tau_{ki}$是一个常数；**
+2. **对任意给定的$k$，$\tau_{ki}$是与$i$有关的一个常数。**
+
+根据以上近似，图二的过程可以简单描述为：
+
+$$\begin{cases}
+t_j\leq{\tau_{ki}},(j=1,2,\dots,n-1)\\
+t_n\geq{\tau_{ki}}
+\end{cases}$$
+
+$\tau_{ki}$可以通过下式求得：
+
+$$\sum_{j=1,j\neq{i}}^NP_{kj}(t<\tau_{ki})=C_k$$
+
+其中$P_{kj}(t<\tau_{ki})$是叶节点$k$处对内容$i$请求间隔时间的累积分布。
+
+现在$f_{ki}^0(t)$可以被表示为：
+
+$$f_{ki}^0(t)=\sum_{n=1}^{\infty}f_{ki}(t|n)P_{ki}(t<\tau_{ki})^{n-1}(1-P_{ki}(t<\tau_{ki}))$$
+
+其中：
+
+$$P_{ki}(t<\tau_{ki})=1-e^{-\lambda_{ki}\tau_{ki}}$$
+
+对$f_{ki}^0(t)$做Laplace变换，可得：
+
+$$\phi_{ki}(s)=\frac{\lambda_{ki}e^{(-s-\lambda_{ki})\tau_{ki}}}{\lambda_{ki}e^{(-s-\lambda_{ki})\tau_{ki}}+s}$$
+
+然后易得：
+
+$$T_{ki}=-\frac{d\phi_{ki}(s)}{ds}{|_{s=0}}=\lambda_{ki}^{-1}e^{\lambda_{ki}\tau_{ki}}$$
+
+$$\lambda_{ki}^0=T_{ki}^{-1}=\lambda_{ki}e^{-\lambda_{ki}\tau_{ki}}$$
 
 
 
