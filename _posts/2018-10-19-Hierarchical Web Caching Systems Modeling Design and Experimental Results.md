@@ -75,6 +75,7 @@ $t_n$：最后一次缓存命中与下一次缓存丢失的时间间隔。
 $$t=\sum_{i=1}^{n-1}t_i+t_n$$
 
 $t_i$的精确分布可以通过单个内容的组合泊松过程的分布得到，但计算量巨大。因此本文提出一个近似技术使得问题易于处理。
+
 ⭐️**定义$\tau_{ki}$为对内容$i$的两个相邻请求的最大间隔时间，且期间不包括缓存丢失。实际上$\tau_{ki}$是个随机变量，但在本文的近似中，假设：**
 
 1. **对任意给定的$k$和$i$，$\tau_{ki}$是一个常数；**
@@ -111,8 +112,9 @@ $$T_{ki}=-\frac{d\phi_{ki}(s)}{ds}{|_{s=0}}=\lambda_{ki}^{-1}e^{\lambda_{ki}\tau
 
 $$\lambda_{ki}^0=T_{ki}^{-1}=\lambda_{ki}e^{-\lambda_{ki}\tau_{ki}}$$
 
->由此可以算得单个节点的缓存命中率：
->$$p_{hit}=1-\eta_{ki}=1-\frac{\lambda_{ki}^0}{\lambda_{ki}}=1-\frac{\lambda_{ki}e^{-\lambda_{ki}\tau_{ki}}}{\lambda_{ki}}=1-e^{-\lambda_{ki}\tau_{ki}}$$
+⭐️**由此可以算得单个节点的缓存命中率：**
+
+$$p_{hit}=1-\eta_{ki}=1-\frac{\lambda_{ki}^0}{\lambda_{ki}}=1-\frac{\lambda_{ki}e^{-\lambda_{ki}\tau_{ki}}}{\lambda_{ki}}=1-e^{-\lambda_{ki}\tau_{ki}}$$
 
 
 
