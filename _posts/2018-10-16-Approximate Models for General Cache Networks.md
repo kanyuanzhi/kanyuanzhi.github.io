@@ -52,7 +52,7 @@ $$R(v,v^{\prime})=\{i:v^{\prime}=P_i^v[2]\}$$
 表示$v$的下一跳是$v^{\prime}$、目的地是服务器$s$的请求内容序号$i$的集合。
 >上句比较难翻译，附原文：This is the set of all request ids i for which v 0 is on the next hop from v along the shortest path to source s s.t. i ∈ files(s).
 
-![](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20181016/1.png)
+![](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20181016/1.jpg)
 
 $r_{i,v}$：节点$v$上对内容$f_i$的综合请求速率（直接请求$\lambda_{i,v}$+间接请求$m_{i,v}$），则：
 
