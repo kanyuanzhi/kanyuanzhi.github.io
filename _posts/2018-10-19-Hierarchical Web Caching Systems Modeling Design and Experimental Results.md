@@ -112,7 +112,7 @@ $$T_{ki}=-\frac{d\phi_{ki}(s)}{ds}{|_{s=0}}=\lambda_{ki}^{-1}e^{\lambda_{ki}\tau
 
 $$\lambda_{ki}^0=T_{ki}^{-1}=\lambda_{ki}e^{-\lambda_{ki}\tau_{ki}}$$
 
-⭐️**由此可以算得单个节点的缓存命中率：**
+⭐️**由此可以算得单个节点$k$内容$i$的缓存命中率：**
 
 $$p_{hit}=1-\eta_{ki}=1-\frac{\lambda_{ki}^0}{\lambda_{ki}}=1-\frac{\lambda_{ki}e^{-\lambda_{ki}\tau_{ki}}}{\lambda_{ki}}=1-e^{-\lambda_{ki}\tau_{ki}}$$
 
