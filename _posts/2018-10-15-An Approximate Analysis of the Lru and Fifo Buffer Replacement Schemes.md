@@ -16,6 +16,7 @@ key: 20181015
 **Url:** [click here](https://dl.acm.org/citation.cfm?id=98525)
 
 ## 建模过程
+### 模型定义与假设
 总大小为$D$的项目集合。
 
 大小为$B$的缓存。
@@ -40,6 +41,8 @@ $X_{i,n}=k$当且仅当第$n$个请求之后来自$k$分割的一个项目占据
 稳态时，$\underline{X}=\lim_{n\to\infty}{\underline{X_n}},Y_k=\lim_{n\to\infty}{Y_{k,n}},1\leq{k}\leq{K}$
 
 $k$分割的命中率为：$h_k=\dfrac{E[Y_k]}{D_k}$
+
+### 模型描述
 
 缓存栈顶部为位置1，底部为位置$B$，第$j$个最常访问的项目在位置$j,j=1,\dots,B$。令$\pi(\underline{x})=Pr[\underline{X}=\underline{x}]$，其中$\underline{x}=(x_1,\dots,x_B)\in{S}$，$S$是缓存可能状态的序列集合，有：
 
@@ -76,7 +79,7 @@ $$(a)^+=\begin{cases}a,\quad a>0\\
 
 $$h_k=\dfrac{E[Y_k]}{D_k}=\dfrac{b_k(B)}{D_k}$$
 
-## 近似性分析
+### 模型分析
 
 **⚠️由于公式(1)中的概率$\pi$并不容易求得，所以近似用$r_k(j-1)$表示，即用缓存前$j-1$个位置中分割来自$k$的平均项目数代替真实的项目分布。**
 
