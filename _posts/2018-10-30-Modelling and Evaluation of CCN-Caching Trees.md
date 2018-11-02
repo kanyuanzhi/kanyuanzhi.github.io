@@ -46,7 +46,13 @@ $$\lambda_2^{'}=\lambda_1\gamma_1^{N_1}+\lambda_2$$
 
 $\pi_{(i,j)}$：表示PoI在$R_1$的$i$处、在$R_2$的$j$处的均衡概率。
 
-$\pi_{(i,\bullet)}=\sum_j\pi_{(i,j)}$：表示$R_1$状态的均衡概率，独立于$R_2$
+$\pi_{(i,\bullet)}=\sum_j\pi_{(i,j)}$：表示$R_1$状态的均衡概率，独立于$R_2$。由于第二个缓存的状态不会影响第一个缓存，此概率显然就是单个缓存模型的状态概率。计算$\pi_{(\bullet,j)}=\sum_i\pi_{(i,j)}$非常困难，目前得到的唯一结果是：
+
+$$\pi_{(\bullet,1)}=\frac{\lambda_2^{'}-\lambda_2C/(\mu_2+\lambda_2)}{\mu_2+\lambda_2^{'}-C}$$
+
+其中$\lambda_2^{'}$是上文提到的$R_1$丢失速率，$C$为：
+
+$$C=\lambda_1[(\mu_1/(\lambda_1+\mu_1))^{N_1}-(\mu_1/(\lambda_1+\lambda_2+\mu_1+\mu_2))^{N_1}]$$
 
 
 
