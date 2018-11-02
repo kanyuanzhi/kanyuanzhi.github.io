@@ -15,9 +15,7 @@ key: 20181030
 **Journal:** NETWORKING<br>
 **Url:** [click here](https://link.springer.com/chapter/10.1007/978-3-642-20757-0_7)
 
-## 单节点建模过程
-
-### 模型定义与假设
+## 单节点建模
 $\lambda$：使得内容PoI来到缓存顶部的请求的到达速率（对内容PoI请求的到达速率）。
 
 $\mu$：使得内容PoI下移的请求的到达速率。
@@ -28,7 +26,38 @@ $$\pi_i=\frac{\lambda}{\mu}\big[\frac{\mu}{\mu+\lambda}\big]^i$$
 
 $$\pi_{N+1}=\big[\frac{\mu}{\mu+\lambda}\big]^N$$
 
-$\pi_{N+1}$表示PoI不在缓存中的时间所占比重。
+$\pi_{N+1}$表示PoI不在缓存中的时间所占比重。自然可以推出PoI被请求命中的时间比重为$1-\pi_{N+1}$。因此平均丢失速率为：
+
+$$\lambda\pi_{N+1}=\lambda\big[\frac{\mu}{\mu+\lambda}\big]^N$$
+
+![](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20181030/1.png)
+
+## 层级缓存建模
+
+### 模型定义与假设
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
