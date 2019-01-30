@@ -117,7 +117,20 @@ $$\lambda_{ki}^0=T_{ki}^{-1}=\lambda_{ki}e^{-\lambda_{ki}\tau_{ki}}$$
 $$p_{hit}=1-\eta_{ki}=1-\frac{\lambda_{ki}^0}{\lambda_{ki}}=1-\frac{\lambda_{ki}e^{-\lambda_{ki}\tau_{ki}}}{\lambda_{ki}}=1-e^{-\lambda_{ki}\tau_{ki}}$$
 
 
+#### 计算$T_{0i}$
 
+$$f_{ki}^0(t)=\begin{cases}
+\sigma_{ki}^0e^{-\sigma_{ki}^0(t-\tau_{ki})}, \quad \tau_{ki}<t<\infty \\
+0, \quad t<\tau_{ki}
+\end{cases}$$
+
+这是一个截断指数分布，其中：
+
+$$\sigma_{ki}=\frac{1}{\lambda_{ki}^{-1}-\tau_{ki}}$$
+
+## 数值分析与设计规则
+
+### 数值分析
 
 
 
