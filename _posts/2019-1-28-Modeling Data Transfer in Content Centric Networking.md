@@ -1,7 +1,7 @@
 ---
 title: Modeling Data Transfer in Content-Centric Networking
 tags:	PaperRead
-key: 20180128
+key: 20190128
 ---
 
 
