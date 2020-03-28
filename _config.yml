@@ -18,7 +18,7 @@
 ##############################
 text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
 highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
-url     : # the base hostname & protocol for your site e.g. https://www.someone.com
+url     : kanyuanzhi.github.io # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : / # does not include hostname
 title   : Kan Yuanzhi
 description: > # this means to ignore newlines until "Language & timezone"
@@ -37,7 +37,7 @@ author:
   type      : # "person" (default), "organization"
   name      : Kan Yuanzhi
   url       :
-  avatar    : # path or url of avatar image (square)
+  avatar    : https://avatars0.githubusercontent.com/u/12381296?s=400&u=df941b77c0a594cf7cc6cc138b8da58acdeeb6fa&v=4 # path or url of avatar image (square)
   bio       : I am an amazing person.
   email     : kanyuanzhi@gmail.com
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
@@ -55,7 +55,7 @@ author:
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
-repository: user_name/repo_name
+repository: kanyuanzhi/kanyuanzhi.github.io
 repository_tree: master
 
 
