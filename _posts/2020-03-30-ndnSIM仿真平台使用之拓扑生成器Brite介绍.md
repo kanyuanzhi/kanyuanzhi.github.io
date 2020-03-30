@@ -4,11 +4,9 @@ tags:	ndnSIM
 key: 20200330
 ---
 
-本文参考Brite官网提供的用户手册，介绍示拓扑生成器Brite的安装与使用，并提供一个简单的Python脚本将生成的拓扑文件转为ndnSIM可读取的文件。
+本文参考Brite官网提供的用户手册，介绍拓扑生成器Brite的安装与使用，并提供一个简单的Python脚本将生成的拓扑文件转为ndnSIM可读取的文件。
 
 <!--more-->
-
-
 
 版本信息如下：
 
@@ -46,7 +44,7 @@ Brite官网：<http://www.cs.bu.edu/brite>
 
 ![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20200330/1.jpg)
 
-### 使用
+## 使用
 
 Brite可生成的拓扑类型（Topology Type）有四种：
 
@@ -55,7 +53,7 @@ Brite可生成的拓扑类型（Topology Type）有四种：
 3. 2 Level: TOP-DOWN 
 4. 2 Level: BOTTOM-UP
 
-我们只需要选择第二种ROUTER(IP) ONLY。在下方的参数设置里（Router Topology Parameters）也有很多可选参数，我们用到的是HS、LS和N，其中HS与LS表示生成拓扑平面的大小（与ndnSIM拓扑格式中节点的坐标有关），N表示节点总数，N<HS*LS。其他参数选择默认值即可，具体含义如下：
+我们只需要选择第二种ROUTER(IP) ONLY。在下方的参数设置里（Router Topology Parameters）也有很多可选参数，我们用到的是HS、LS和N，其中HS表示拓扑平面的大小（与ndnSIM拓扑格式中节点的坐标有关），LS表示拓扑层次的大小，N表示节点总数，N<HS*LS。其他参数选择默认值即可，具体含义如下：
 
 |   Parameter    |                 Meaning                 |              Values              |
 | :------------: | :-------------------------------------: | :------------------------------: |
@@ -71,9 +69,11 @@ Brite可生成的拓扑类型（Topology Type）有四种：
 |     BWdist     |      bandwidth assignment to links      | 1: Const, 2: Unif, 3: Exp, 4: HT |
 |  MaxBW, MinBW  |     min, max link bandwidth values      |            float ＞ 0            |
 
-比如我们设置HS=100、LS=1、N=100，输入Location为test，选择Formats为BTITE，然后点击Build Topology，在BRITE目录里会生成test.brite文件，即拓扑文件。
+比如我们设置HS=100、LS=10、N=500，输入Location为test，选择Formats为BTITE，然后点击Build Topology，在BRITE目录里会生成[test.brite](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/mydocs/20200328/test.brite)文件，即拓扑文件。
 
-### 导出文件格式
+![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20200330/2.jpg)
+
+## 导出文件格式
 
 Brite导出的文件格式如下：
 
@@ -108,23 +108,14 @@ Brite导出的文件格式如下：
 ```
 router
 # node  comment     yPos    xPos
-Src1   NA        1       3
-Src2   NA        3       3
-Rtr1   NA        2       5
-Rtr2   NA        2       7
-Dst1   NA        1       9
-Dst2   NA        3       9
+...
 
 link
 # srcNode   dstNode     bandwidth   metric  delay   queue
-Src1        Rtr1        10Mbps      1        10ms    20
-Src2        Rtr1        10Mbps      1        10ms    20
-Rtr1        Rtr2        1Mbps       1        10ms    20
-Dst1        Rtr2        10Mbps      1        10ms    20
-Dst2        Rtr2        10Mbps      1        10ms    20
+...
 ```
 
-因此我们需要进一步转换。有两种转换方式，一种是将test.brite文件的内容复制到excel表格中然后手动调整，另一种是编写脚本自动调整。此处需要注意的是：（1）Brite拓扑文件中节点的xy坐标与ndnSIM拓扑文件中节点的xy坐标是相反的；（2）一般情况下我们只需要用到Brite生成拓扑的结构，链路信息可以在转换过程中再次指定，比如ndnSIM拓扑文件中链路的bandwidth、metric、delay和queue的信息可以最后统一设置。此处我们提供一个简单的Python转换脚本，将此文件放入BRITE目录中然后运行，可以得到适用于ndnSIM的拓扑文件test.txt。
+因此我们需要进一步转换。有两种转换方式，一种是将test.brite文件的内容复制到excel表格中然后手动调整，另一种是编写脚本自动调整。此处需要注意的是：（1）Brite拓扑文件中节点的xy坐标与ndnSIM拓扑文件中节点的xy坐标是相反的；（2）一般情况下我们只需要用到Brite生成拓扑的结构，链路信息可以在转换过程中再次指定，比如ndnSIM拓扑文件中链路的bandwidth、metric、delay和queue的信息可以最后统一设置。此处我们提供一个简单的Python转换脚本，将此文件放入BRITE目录中然后运行，可以得到适用于ndnSIM的拓扑文件[test.txt](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/mydocs/20200328/test.txt)。
 
 ```python
 import sys
