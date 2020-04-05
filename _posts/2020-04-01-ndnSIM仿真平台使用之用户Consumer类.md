@@ -4,7 +4,7 @@ tags:	ndnSIM
 key: 20200401
 ---
 
-本文首先介绍ndnSIM提供的不同用户类的参数设置与使用方式，然后介绍用户类的核心方法`SendPacket()`以及如何初始化自定义的标签，最后介绍如何创建自定义的用户类。
+本文首先介绍ndnSIM提供的不同用户类的参数设置与使用方式，然后介绍用户类的核心方法`SendPacket()`以及如何初始化自定义的兴趣包标签，最后介绍如何创建与使用自定义的用户类。
 
 <!--more-->
 
@@ -50,7 +50,7 @@ consumerHelper.SetAttribute("StartSeq", IntegerValue(0));
 consumerHelper.SetAttribute("LifeTime", StringValue("2s"));
 ```
 
-其他用户类中也可设置以上参数
+其他用户类中也可设置以上参数。
 
 ### 使用
 
@@ -192,7 +192,7 @@ consumerHelper.SetAttribute(...);
 consumerHelper.Install(consumerNodes); // 在指定节点上安装用户
 ```
 
-## 发出兴趣包`SendPacket()`
+## 发出兴趣包SendPacket()
 
 用户类中最重要的方法是`SendPacket()`，用以创建并按照一定规则发出兴趣包。我们以基类Consumer类为例，详细介绍`SendPacket()`方法。
 
@@ -244,7 +244,7 @@ Consumer::SendPacket()
   time::milliseconds interestLifeTime(m_interestLifeTime.GetMilliSeconds());
   interest->setInterestLifetime(interestLifeTime);
   
-	// 此处可设置自定义的参数或标签，详见“ndnSIM仿真平台使用之在兴趣包与数据包内添加标签（字段）”
+  // 此处可设置自定义的参数或标签，详见“ndnSIM仿真平台使用之在兴趣包与数据包内添加标签（字段）”
   interest->setHops(0);
   interest->setFaces("");
 
@@ -271,13 +271,15 @@ Consumer::SendPacket()
 
 为此，我们创建一个ConsumerZipfMandelbrotTest类，该类与原ConsumerZipfMandelbrot类几乎一致，仅在加入一个自定义的整型标签TestTag（如何添加标签见[ndnSIM仿真平台使用之在兴趣包与数据包内添加标签（字段）](https://kanyuanzhi.github.io/2020/03/19/ndnSIM仿真平台使用之在兴趣包与数据包内添加标签-字段.html)）。此外，考虑到如果每次实验中标签TagTest有不同的初始化值，那么每次都在`SendPacket()`重新赋值该标签将大大影响实验的效率（因为ndnSIM需要重新编译该类），因此我们将在示例文件中显式地设置标签的初始化值。
 
+**需要注意的是，显式地在示例文件中对用户类中的某个变量赋值时，该变量不仅可以是兴趣包的标签，也可以是其他与实验相关的变量。**
+
 ### 创建类所在文件
 
 复制ndn-consumer-zipf-mandelbrot.hpp与ndn-consumer-zipf-mandelbrot.cpp，并分别命名为ndn-consumer-zipf-mandelbrot-test.hpp与ndn-consumer-zipf-mandelbrot-test.cpp。
 
 ### 修改类名
 
-- 将代码中所有的`ConsumerZipfMandelbrot`替换为`ConsumerZipfMandelbrotTest`；
+- 将两个文件的代码中所有的`ConsumerZipfMandelbrot`替换为`ConsumerZipfMandelbrotTest`：
 
 ```c++
 NS_LOG_COMPONENT_DEFINE("ndn.ConsumerZipfMandelbrotTest");
@@ -305,7 +307,7 @@ ConsumerZipfMandelbrotTest::GetTypeId(void){
 - 在ndn-consumer-zipf-mandelbrot-test.hpp中的ConsumerZipfMandelbrot类定义里添加私有属性m_test_tag：
 
 ```c++
-class ConsumerZipfMandelbrot : public ConsumerCbr {
+class ConsumerZipfMandelbrotTest : public ConsumerCbr {
 ...
 private:
   uint32_t m_N;               // number of the contents
@@ -320,10 +322,10 @@ private:
 ...
 ```
 
-- 在ndn-consumer-zipf-mandelbrot-test.cpp中的`GetTypeId()`方法里添加设置接口：
+- 在ndn-consumer-zipf-mandelbrot-test.cpp中的`GetTypeId()`方法里添加属性设置接口：
 
 ```c++
-ConsumerZipfMandelbrot::GetTypeId(void){
+ConsumerZipfMandelbrotTest::GetTypeId(void){
   static TypeId tid =
     TypeId("ns3::ndn::ConsumerZipfMandelbrotTest")
       ...
@@ -339,14 +341,14 @@ ConsumerZipfMandelbrot::GetTypeId(void){
 
 ```c++
 void
-ConsumerZipfMandelbrot::SendPacket()
+ConsumerZipfMandelbrotTest::SendPacket()
 {
   ...
   shared_ptr<Interest> interest = make_shared<Interest>();
   interest->setNonce(m_rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
   interest->setName(*nameWithSequence);
   
-	// 初始TestTag，注意此步要求已经为兴趣包添加了TestTag标签
+  // 初始TestTag，注意此步要求已经为兴趣包添加了TestTag标签
   interest->setTestTag(m_test_tag);
   ...
 }
