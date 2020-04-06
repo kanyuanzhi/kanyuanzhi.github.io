@@ -17,6 +17,8 @@ ns-3-dev：ns-3.23-dev-ndnSIM-2.1<br>
 
 Producer类发出数据包，用以响应用户发出的兴趣包。
 
+> 路径：/ndnSIM/apps
+
 ### 设置参数
 
 - Prefix：该Producer响应请求何种前缀的兴趣包。

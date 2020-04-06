@@ -29,6 +29,8 @@ ns-3-dev：ns-3.23-dev-ndnSIM-2.1<br>
 
 Consumer类是所有用户类的基类，用于发出兴趣包。参数设置中我们仅介绍常用的参数。
 
+> 路径：/ndnSIM/apps
+
 ### 设置参数
 
 - Prefix：请求内容的前缀。
