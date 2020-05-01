@@ -1,10 +1,10 @@
 ---
-title: ndnSIM仿真平台使用之转发Forward类
+title: ndnSIM仿真平台使用之转发Forwarder类
 tags:	ndnSIM
 key: 20200405
 ---
 
-Forward类包含一系列事件触发器，是ndnSIM转发过程的核心。通过理解Forward类，也有助于我们理解NDN的包处理机制。本文将详细介绍仿真实验中最常用到的几种事件触发器源码，基于此将很容易实现自定义的转发处理策略。需要注意的是，Forward类不同于具体的转发策略（如best-route、multicast等），该类仅是NDN转发引擎的实现，换句话说，兴趣包经过Forward类处理后再交由具体的转发策略转发。
+Forwarder类包含一系列事件触发器，是ndnSIM转发过程的核心。通过理解Forwarder类，也有助于我们理解NDN的包处理机制。本文将详细介绍仿真实验中最常用到的几种事件触发器源码，基于此将很容易实现自定义的转发处理策略。需要注意的是，Forwarder类不同于具体的转发策略（如best-route、multicast等），该类仅是NDN转发引擎的实现，换句话说，兴趣包经过Forwarder类处理后再交由具体的转发策略转发。
 
 <!--more-->
 
@@ -15,15 +15,15 @@ Forward类包含一系列事件触发器，是ndnSIM转发过程的核心。通�
 操作系统：Ubuntu 16.04 <br>ndnSIM：ndnSIM-2.1<br>
 ns-3-dev：ns-3.23-dev-ndnSIM-2.1<br>
 
-## Forward类概要
+## Forwarder类概要
 
 > 路径：/ndnSIM/NFD/daemon/fw
 
-Forward类是一系列转发管道（forwarding pipelines），包含从接受兴趣包/数据包到发出兴趣包/数据包之间的所有操作步骤。
+Forwarder类是一系列转发管道（forwarding pipelines），包含从接受兴趣包/数据包到发出兴趣包/数据包之间的所有操作步骤。
 
 ### 主要私有属性
 
-forward.hpp中定义了Forward类的若干私有属性，其中最重要的是：
+forwarder.hpp中定义了Forwarder类的若干私有属性，其中最重要的是：
 
 - FIB表：m_fib；
 - PIT表：m_pit；
@@ -52,7 +52,7 @@ private:
 
 ### 主要事件触发器
 
-Forward类由一系列时间触发器组成，在此我们仅介绍最常用到的几种（最常修改）：
+Forwarder类由一系列时间触发器组成，在此我们仅介绍最常用到的几种（最常修改）：
 
 - onIncomingInterest()：路由节点收到兴趣包时触发的操作；
 - onContentStoreMiss()：兴趣包没有命中缓存时触发的操作；
@@ -310,7 +310,7 @@ class Strategy : public enable_shared_from_this<Strategy>, noncopyable
                        shared_ptr<Face> outFace,
                        bool wantNewNonce)
   {
-    // 调用Forward类中的onOutgoingInterest()触发器
+    // 调用Forwarder类中的onOutgoingInterest()触发器
     m_forwarder.onOutgoingInterest(pitEntry, *outFace, wantNewNonce);
   }
 }
