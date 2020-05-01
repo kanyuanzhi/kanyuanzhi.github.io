@@ -269,7 +269,7 @@ Forwarder::onOutgoingInterest(shared_ptr<pit::Entry> pitEntry, Face& outFace,
 }
 ```
 
-此处要强调的是，在ndnSIM中，兴趣包未命中缓存时，兴趣包并不直接交由`onOutgoingInterest()`处理，而是先交由各转发策略的`afterReceiveInterest()`方法处理，再交由`onOutgoingInterest()`处理，所以并未在`onContentStoreMiss()`中出现`onOutgoingInterest()`。以best-route为例，`afterReceiveInterest()`方法在头文件/ndnSIM/NFD/daemon/fw/best-route-strategy.hpp中的定义如下：
+此处要强调的是，在ndnSIM中，兴趣包未命中缓存时，兴趣包并不直接交由`onOutgoingInterest()`处理，而是先交由各转发策略的`afterReceiveInterest()`方法处理，再交由`onOutgoingInterest()`处理，所以在`onContentStoreMiss()`中并未出现`onOutgoingInterest()`，**中间一步交由转发策略策略处理的原因是为了得到兴趣包的转出端口`outFace`**。以best-route为例，`afterReceiveInterest()`方法在头文件/ndnSIM/NFD/daemon/fw/best-route-strategy.hpp中的定义如下：
 
 ```c++
 class BestRouteStrategy : public Strategy
@@ -285,7 +285,7 @@ public:
 };
 ```
 
-在实现文件/ndnSIM/NFD/daemon/fw/best-route-strategy.cpp中的实现如下：
+在文件/ndnSIM/NFD/daemon/fw/best-route-strategy.cpp中的实现如下：
 
 ```c++
 void
