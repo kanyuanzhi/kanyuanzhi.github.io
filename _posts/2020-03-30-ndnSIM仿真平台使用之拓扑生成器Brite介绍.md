@@ -53,7 +53,7 @@ Brite可生成的拓扑类型（Topology Type）有四种：
 3. 2 Level: TOP-DOWN 
 4. 2 Level: BOTTOM-UP
 
-我们只需要选择第二种ROUTER(IP) ONLY。在下方的参数设置里（Router Topology Parameters）也有很多可选参数，我们用到的是HS、LS和N，其中HS表示拓扑平面的大小（与ndnSIM拓扑格式中节点的坐标有关），LS表示拓扑层次的大小，N表示节点总数，N<HS*LS。其他参数选择默认值即可，具体含义如下：
+我们只需要选择第二种ROUTER(IP) ONLY。在下方的参数设置里（Router Topology Parameters）也有很多可选参数，我们用到的是HS、LS和N，其中HS表示拓扑平面一侧的大小（与ndnSIM拓扑格式中节点的坐标有关），LS表示拓扑平面一侧对应面积的大小，N表示节点总数，N<HS*LS。其他参数选择默认值即可，具体含义如下：
 
 |   Parameter    |                 Meaning                 |              Values              |
 | :------------: | :-------------------------------------: | :------------------------------: |
@@ -69,9 +69,15 @@ Brite可生成的拓扑类型（Topology Type）有四种：
 |     BWdist     |      bandwidth assignment to links      | 1: Const, 2: Unif, 3: Exp, 4: HT |
 |  MaxBW, MinBW  |     min, max link bandwidth values      |            float ＞ 0            |
 
-比如我们设置HS=100、LS=10、N=500，输入Location为test，选择Formats为BTITE，然后点击Build Topology，在BRITE目录里会生成[test.brite](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/mydocs/20200328/test.brite)文件，即拓扑文件。
+比如我们设置HS=100、LS=10、N=500，输入Location为test，选择Formats为BTITE，然后点击Build Topology，在BRITE目录里会生成[test.brite](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/mydocs/20200328/test.brite)文件，即拓扑文件，内容如下：
+
+节点：
 
 ![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20200330/2.jpg)
+
+链路：
+
+![image](https://github.com/kanyuanzhi/kanyuanzhi.github.io/raw/master/assets/myimages/20200330/3.jpg)
 
 ## 导出文件格式
 

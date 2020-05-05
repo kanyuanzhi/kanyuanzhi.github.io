@@ -204,7 +204,7 @@ Producer::OnInterest(shared_ptr<const Interest> interest)
   data->setSignature(signature);
   
   // 初始TestTag，注意此步要求已经为数据包添加了TestTag标签
-  data->setTestTag(1);
+  data->setTestTag(m_test_tag);
   ...
 }
 ```
